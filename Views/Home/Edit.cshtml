@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "Добавление или удаление данных";
+}
+<h1>@ViewData["Title"]</h1>
+<p>На данной странице вы можете изменить содержимое адресной книги.</p>
+
+<table bborder="1" cellpadding="1" cellspacing="1" style="width: 500px">
+    <tr>
+        <td> ФИО </td>
+        <td> Эл-почта </td>
+        <td> Телефон </td>
+        <td> Дата рождения </td>
+        <td></td>
+    <tr>
+        <form method="post" action="~/Home/AddUser">
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <td> <input name="name" type="text"> </td>
+        
+        </div>
+        <td> <input name="email" type="email"> </td>
+        
+        </div>
+        <td> <input name="phone" type="text"> </td>
+        
+        </div>
+        <td> <input name="birhday" type="date"> </td>
+        
+        </div>
+        <td><input id="Button1" name="add" type="submit" onclick="Clik" action="~/Home/AddUser" value="Добавить"></td>
+        </form>
+    </tr>
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <form method="post" action="~/Home/EditUser">
+                <input type="hidden" value="@user.Id" name="id" />
+            <td><input name="name" type="text" value="@user.Name"></td>
+            <td><input name="email" type="email" value="@user.Email"> </td>
+            <td><input name="phone" type="text" value="@user.Phone"></td>
+            <td><input name="birhday" type="text" value="@user.Birhday"></td>
+            <td><input id="Button1" type="submit" onclick="Click" action="~/Home/AddUser" value="Изменить"></td>
+            </form>
+            <form method="post" action="~/Home/DeleteUser">
+                <input type="hidden" value="@user.Id" name="id" />
+            <td><input id="Button1" type="submit" onclick="Click" action="~/Home/AddUser" value="Удалить"></td>
+            </form>
+
+        </tr>
+    }
+</table>
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

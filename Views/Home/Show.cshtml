@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Show";
+}
+
+<h1>Show</h1>
+@using (Html.BeginForm("Show", "Home", FormMethod.Get))
+{
+    <p>
+        <input name="search" type="text"><input id="Button1" type="submit" value="Найти по ФИО">
+
+    </p>
+}
+<table bborder="1" cellpadding="1" cellspacing="1" style="width: 900px">
+    <tr>
+        <td> ФИО </td>
+        <td> Эл-почта </td>
+        <td> Телефон </td>
+        <td> Дата рождения </td>
+        <td></td>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td> @user.Name </td>
+            <td> @user.Email </td>
+            <td> @user.Phone </td>
+            <td> @user.Birhday </td>
+        </tr>
+    }
+</table>
+        </html>
